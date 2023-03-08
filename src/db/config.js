@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-let connectionUrl = "mongodb+srv://abner:abner@cluster0.rhlo08z.mongodb.net/?retryWrites=true&w=majority";
+let connectionUrl = "mongodb://mongo:Qds2cxy0mE8vOq5IrLzr@containers-us-west-182.railway.app:5705";
 
 async function main()
 {
