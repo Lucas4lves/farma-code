@@ -4,7 +4,9 @@ const app = express();
 //Rotas 
 const medicoRoute = require("./src/routes/MedicoRoute");
 const receitaRoute = require("./src/routes/ReceitaRoute");
-const remedioRoute = require("./src/routes/RemediosRoute")
+const remedioRoute = require("./src/routes/RemediosRoute");
+const lojaRoute = require("./src/routes/LojaRoute");
+
 //Config Express
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -23,8 +25,9 @@ app.use((req,res,next) => {
 })
 
 
-app.use("/medico", medicoRoute)
-app.use("/receita",receitaRoute)
-app.use("/produto",remedioRoute)
+app.use("/medico", medicoRoute);
+app.use("/receita",receitaRoute);
+app.use("/produto",remedioRoute);
+app.use("/loja", lojaRoute);
 
 app.listen(process.env.PORT || 3000)
