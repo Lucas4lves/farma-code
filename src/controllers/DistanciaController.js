@@ -6,7 +6,7 @@ module.exports = class DistanciaController
     {   
         let {localizacao_cliente, lista_remedios} = req.body;
 
-        let lojas = await lojaModel.findAll();
+        let lojas = await lojaModel.find();
         if(!lojas)
         {
             return res.status(400).json({
@@ -25,7 +25,7 @@ module.exports = class DistanciaController
         const distancia = (melhoresLojas, localizacao_cliente) => melhoresLojas.map(loja => {
             return {
                 ...loja,
-                dist: distance(loja.latitude, loja.longitude, localizacao_cliente.latitude, localizacao_cliente.longitude)
+                dist: distance(Number(loja.latitude), Number(loja.longitude), Number(localizacao_cliente.latitude), Number(localizacao_cliente.longitude))
             }
         })
 
@@ -43,7 +43,7 @@ module.exports = class DistanciaController
             let matches = 0;
             for(let i = 0; i < lista_med.length; i++)
             {
-                if(estoque[i].nome.includes(lista_med[i]))
+                if(estoque.includes(lista_med[i]))
                 {
                     matches = matches + 1;
                 }
