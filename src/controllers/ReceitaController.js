@@ -31,7 +31,6 @@ module.exports = class ReceitaController
             hash:bstring,
             nome_paciente,
             lista_de_medicamentos,
-            lista_de_indicacoes,
             validade,
             autor:medico._id
         }
