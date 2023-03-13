@@ -1,6 +1,6 @@
 const receitaModel = require("../models/Receita");
 const MedicoModel = require("../models/Medico");
-
+const bcrypt = require("bcrypt");
 
 module.exports = class ReceitaController
 {
@@ -10,9 +10,17 @@ module.exports = class ReceitaController
         let {nome_paciente,lista_de_medicamentos,lista_de_indicacoes,validade,email} = req.body;
       
         const medico = await MedicoModel.findOne({email}).select('-senha')
-        
+        let bstring ="";
+        //Pro frontend
+        bstring  += medico.token;
+        bstring  += nome_paciente.replaceAll(" ", "").toLowerCase();
+        bstring += Date.now().toString();
+
+        //Pro backend
+        let secret = await bcrypt.hash(bstring, 10);
+
         const receita = new receitaModel({
-            hash:medico.token,
+            hash:secret,
             nome_paciente,
             lista_de_medicamentos,
             lista_de_indicacoes,
@@ -20,8 +28,18 @@ module.exports = class ReceitaController
             autor:medico._id
         });
 
-        const new_receita = await receita.save(); //salvado receita
-        res.json({new_receita})}
+        const receita_client = {
+            hash:bstring,
+            nome_paciente,
+            lista_de_medicamentos,
+            lista_de_indicacoes,
+            validade,
+            autor:medico._id
+        }
+
+
+        await receita.save(); //salvado receita
+        res.json({resultado: receita_client, error: false, secret: secret})}
     
     //rota para pegar todas as receitas --> retorna todas as receitas de um médico1*q   996 q
     static async get_receita(req,res){
