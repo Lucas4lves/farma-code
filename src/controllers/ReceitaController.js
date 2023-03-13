@@ -42,7 +42,8 @@ module.exports = class ReceitaController
     //rota para pegar todas as receitas --> retorna todas as receitas de um médico 996 q
     static async get_receita(req,res){
         let id = req.params.id
-        let receitas = await receitaModel.find({hash:id})
+        const medico = await MedicoModel.findOne({_id:id}).select('-senha')
+        let receitas = await receitaModel.find({autor:medico._id})
         res.json({receitas})
     }
     static async get_receita_hash(req,res){
