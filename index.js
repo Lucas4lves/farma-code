@@ -6,6 +6,7 @@ const medicoRoute = require("./src/routes/MedicoRoute");
 const receitaRoute = require("./src/routes/ReceitaRoute");
 const remedioRoute = require("./src/routes/RemediosRoute");
 const lojaRoute = require("./src/routes/LojaRoute");
+const distanciaRoute = require("./src/routes/DistanciaRoute");
 
 //Config Express
 const bodyParser = require('body-parser');
@@ -29,5 +30,6 @@ app.use("/medico", medicoRoute);
 app.use("/receita",receitaRoute);
 app.use("/produto",remedioRoute);
 app.use("/loja", lojaRoute);
+app.use("/calcular", distanciaRoute);
 
 app.listen(process.env.PORT || 3000)
