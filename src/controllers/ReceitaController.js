@@ -20,7 +20,7 @@ module.exports = class ReceitaController
         let secret = await bcrypt.hash(bstring, 10);
 
         const receita = new receitaModel({
-            hash:secret,
+            hash:secret.replaceAll("/", ""),
             nome_paciente,
             lista_de_medicamentos,
             validade,
