@@ -43,7 +43,7 @@ module.exports = class DistanciaController
             let matches = 0;
             for(let i = 0; i < lista_med.length; i++)
             {
-                if(estoque.includes(lista_med[i]))
+                if(estoque[i].nome.includes(lista_med[i]))
                 {
                     matches = matches + 1;
                 }
