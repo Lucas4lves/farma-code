@@ -3,6 +3,7 @@ const LojaModel = require("../models/Loja");
 module.exports = class LojaController
 {
     static async cadastrar(req, res)
+    
     {
         let { latitude, longitude, endereco, estoque } = req.body;
 
