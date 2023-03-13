@@ -18,9 +18,9 @@ module.exports = class ReceitaController
 
         //Pro backend
         let secret = await bcrypt.hash(bstring, 10);
-
+        let regex = /(\/\.*)/
         const receita = new receitaModel({
-            hash:secret.replaceAll("/", ""),
+            hash:secret.replaceAll(regex, ""),
             nome_paciente,
             lista_de_medicamentos,
             validade,
