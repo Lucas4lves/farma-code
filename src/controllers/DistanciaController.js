@@ -28,7 +28,6 @@ module.exports = class DistanciaController {
             }
         })
 
-        console.log(lojasDisponiveis);
         
         const distancia = (melhoresLojas, localizacao_cliente_func) => melhoresLojas.map(loja => {
             return {
@@ -39,11 +38,8 @@ module.exports = class DistanciaController {
 
         let l = lojasDisponiveis(lojas);
 
-        console.log(l);
         
         let melhoresLojas = l.filter(loja => loja.matches >= lista_remedios.length - 1);
-
-        console.log("melhores lojas", melhoresLojas);
 
         return res.status(200).json({
             encontrado: true,
