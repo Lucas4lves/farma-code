@@ -53,7 +53,7 @@ module.exports = class LojaController
 
         static async pegarTodas(req, res)
         {
-            let saida = await LojaModel.findAll();
+            let saida = await LojaModel.find();
             if(!saida || saida.length <= 0)
             {
                 return res.status(400).json({erro: true, msg: "Culpa do Babner"});
