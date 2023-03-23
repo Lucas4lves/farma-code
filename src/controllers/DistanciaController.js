@@ -3,6 +3,12 @@ const lojaModel = require("../models/Loja")
 module.exports = class DistanciaController {
     static async calcularDistancia(req, res) {
         let { localizacao_cliente, lista_remedios } = req.body;
+	
+	if(!lista_remedios || lista_remedios.length < 0)
+	{
+	    return res.status(400).json({erro: true, msg: "É necessário passar uma lista de remédios"});
+	}
+	    
 
         let lojas = await lojaModel.find();
         if (!lojas) {
