@@ -32,7 +32,7 @@ module.exports = class DistanciaController {
         const distancia = (melhoresLojas, localizacao_cliente_func) => melhoresLojas.map(loja => {
             return {
                 ...loja,
-                dist: distance(Number(loja._doc.latitude), Number(loja._doc.longitude), Number(localizacao_cliente_func.latitude), Number(localizacao_cliente_func.longitude))
+                dist: distance(Number(loja._doc.latitude), Number(loja._doc.longitude), Number(localizacao_cliente_func.latitude), Number(localizacao_cliente_func.longitude)).toFixed(2)
             }
         })
 
@@ -71,8 +71,7 @@ module.exports = class DistanciaController {
                 Math.sin(dLon / 2);
             const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
             const d = R * c; // distância em km
-            console.log([lat1, lon1, lat2, lon2]);
-            return d.toFixed(2);
+            return d
         }
 
         function toRadians(degrees) {

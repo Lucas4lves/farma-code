@@ -60,7 +60,7 @@ module.exports = class LojaController
             }
 
             return res.status(200).json({
-                saida
+                resultado: saida
             })
         }
 
